@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="BR Concrete Finishing — driveways, patios, sidewalks and stamped concrete in Athens, Alabama. Free estimates. Se habla español.">
-<title>BR Concrete Finishing</title>
+<meta name="description" content="Summit Concrete Co. — driveways, patios, sidewalks and stamped concrete. Free estimates. Demo website template.">
+<title>Summit Concrete Co. · Demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&family=Inter:wght@400;450;500&display=swap">
 <style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -242,13 +242,63 @@ footer{background:var(--fog);padding-block:56px 40px;color:var(--slate);font-siz
 .reveal{transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .7s}
 .reveal.pre{transform:translateY(18px);opacity:.35}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.ring .fg{stroke-dashoffset:38}.reveal.pre{transform:none;opacity:1}}
+
+/* ---------- Opening intro (video with built-in animation fallback) ---------- */
+#intro{position:fixed;inset:0;z-index:200;background:#101113;color:#f3f1ec;overflow:hidden;display:grid;place-items:center}
+#intro video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s}
+#intro.has-video video{opacity:1}
+#intro .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,17,19,.35),rgba(16,17,19,.75))}
+#intro .bp{position:absolute;inset:0;display:grid;place-items:center}
+#intro.has-video .bp{display:none}
+#intro .bp::before{content:"";position:absolute;inset:0;opacity:0;animation:iFade .8s .1s forwards;
+  background-image:linear-gradient(rgba(244,201,176,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(244,201,176,.09) 1px,transparent 1px);background-size:44px 44px}
+#intro .bp svg{position:relative;width:min(520px,82vw);height:auto;margin-top:-14vh;overflow:visible}
+#intro .ln{fill:none;stroke:#f4c9b0;stroke-width:1.6;stroke-dasharray:var(--l);stroke-dashoffset:var(--l);animation:iDraw 1.4s cubic-bezier(.6,0,.3,1) forwards}
+#intro .slab{fill:#a7a49e;transform-box:fill-box;transform-origin:bottom;transform:scaleY(0);animation:iPour 1s 1.6s cubic-bezier(.7,0,.2,1) forwards}
+#intro .dim{font:11px ui-monospace,Menlo,Consolas,monospace;fill:#f4c9b0;opacity:0;letter-spacing:.06em;animation:iFade .4s 1.2s forwards}
+#intro .copy{position:relative;text-align:center;padding:0 max(16px,env(safe-area-inset-left,0px));margin-top:34vh}
+#intro.has-video .copy{margin-top:0}
+#intro .name{font-family:var(--serif);font-size:clamp(44px,8.5vw,96px);line-height:1.02;letter-spacing:-.02em;opacity:0;transform:translateY(16px);animation:iRise .9s var(--nd,2.5s) cubic-bezier(.2,.8,.2,1) forwards}
+#intro .name em{color:#f4c9b0}
+#intro .sub{margin-top:12px;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:#c9c6bf;opacity:0;animation:iFade .6s var(--sd,3.1s) forwards}
+#intro .bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:#f4c9b0}
+#intro .skip{position:absolute;top:calc(18px + env(safe-area-inset-top,0px));right:calc(18px + env(safe-area-inset-right,0px));height:36px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:rgba(16,17,19,.35);color:#f3f1ec;font:inherit;font-size:14px;cursor:pointer;backdrop-filter:blur(6px)}
+#intro.out{animation:iOut .9s cubic-bezier(.8,0,.2,1) forwards}
+#intro.has-video{--nd:.4s;--sd:1s}
+@keyframes iDraw{to{stroke-dashoffset:0}}
+@keyframes iPour{to{transform:scaleY(1)}}
+@keyframes iFade{to{opacity:1}}
+@keyframes iRise{to{opacity:1;transform:none}}
+@keyframes iOut{to{transform:translateY(-100%)}}
+.replay{background:none;border:1px solid var(--line);color:var(--slate);border-radius:999px;height:32px;padding:0 14px;font:inherit;font-size:13px;cursor:pointer}
+.replay:hover{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){#intro{display:none!important}}
 </style>
 </head>
 <body>
+<div id="intro" role="dialog" aria-label="Opening intro">
+  <video id="introVideo" muted playsinline preload="auto" aria-hidden="true"><source src="intro.mp4" type="video/mp4"></video>
+  <div class="shade"></div>
+  <div class="bp" aria-hidden="true">
+    <svg viewBox="0 0 520 300">
+      <path class="ln" style="--l:520" d="M0 250 H520"/>
+      <path class="ln" style="--l:1300" d="M110 250 V120 H270 V250 M270 250 V70 H410 V250 M110 120 L190 62 L270 120"/>
+      <path class="ln" style="--l:900;animation-delay:.4s" d="M140 150 h36 v36 h-36z M206 150 h36 v36 h-36z M300 100 h30 v30 h-30z M352 100 h30 v30 h-30z M300 160 h30 v30 h-30z M352 160 h30 v30 h-30z"/>
+      <rect class="slab" x="90" y="250" width="340" height="20"/>
+      <text class="dim" x="90" y="292">SLAB 6" · 4,000 PSI · #4 REBAR @ 18" O.C.</text>
+    </svg>
+  </div>
+  <div class="copy">
+    <div class="name">Summit <em>Concrete</em> Co.</div>
+    <div class="sub">Driveways · Patios · Foundations</div>
+  </div>
+  <div class="bar" id="introBar"></div>
+  <button class="skip" id="introSkip" type="button">Skip intro</button>
+</div>
 
 <header class="nav">
   <div class="wrap">
-    <a class="logo" href="#home"><span class="logo-mark">br</span>BR Concrete Finishing</a>
+    <a class="logo" href="#home"><span class="logo-mark">sc</span>Summit Concrete Co.</a>
     <nav class="links" id="links" aria-label="Main">
       <a href="#home">Home</a>
       <a href="#services">Services</a>
@@ -270,9 +320,9 @@ footer{background:var(--fog);padding-block:56px 40px;color:var(--slate);font-siz
   <section class="hero">
     <div class="wrap" style="position:relative">
       <div class="hero-copy">
-        <span class="tag"><span class="dot"></span>Athens, Alabama · Se habla español</span>
+        <span class="tag"><span class="dot"></span>Licensed &amp; insured · Free estimates</span>
         <h1 class="display">Concrete poured <em>square</em>, finished smooth, priced fair.</h1>
-        <p class="lede">Driveways, patios, walkways and stamped concrete for homes across North Alabama. Honest quotes, a hardworking crew, and free estimates on every job.</p>
+        <p class="lede">Driveways, patios, walkways and stamped concrete for homes across your area. Honest quotes, a hardworking crew, and free estimates on every job.</p>
         <div class="row" style="justify-content:center">
           <a class="btn btn-fill" href="#quote">Get a free estimate</a>
           <a class="btn btn-ghost" href="#work">See our work</a>
@@ -281,12 +331,12 @@ footer{background:var(--fog);padding-block:56px 40px;color:var(--slate);font-siz
       <div class="hero-stage" aria-hidden="false">
         <div class="art a1">
           <div class="art-k">Homeowner rating</div>
-          <div style="display:flex;align-items:baseline;gap:8px;margin-top:4px"><span class="art-big">4.4</span><span class="stars">★★★★★</span></div>
-          <div class="art-sub">14 reviews on HomeAdvisor</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-top:4px"><span class="art-big">4.8</span><span class="stars">★★★★★</span></div>
+          <div class="art-sub">Sample reviews</div>
           <div class="bars">
-            <div class="bar"><span>5</span><i><b style="right:21%"></b></i><span>79%</span></div>
-            <div class="bar"><span>3</span><i><b style="right:93%"></b></i><span>7%</span></div>
-            <div class="bar"><span>2</span><i><b style="right:93%"></b></i><span>7%</span></div>
+            <div class="bar"><span>5</span><i><b style="right:25%"></b></i><span>75%</span></div>
+            <div class="bar"><span>4</span><i><b style="right:75%"></b></i><span>25%</span></div>
+            <div class="bar"><span>3</span><i><b style="right:100%"></b></i><span>0%</span></div>
           </div>
         </div>
         <div class="art a2">
@@ -296,8 +346,8 @@ footer{background:var(--fog);padding-block:56px 40px;color:var(--slate);font-siz
           <div class="ticket-row"><span>Final</span><span class="num">$4,000</span></div>
         </div>
         <div class="art a3">
-          <p class="mini-quote">“I expected 3–4 days but they finished in 2.”</p>
-          <div class="who"><span class="avatar">JD</span>Jorge D. · Driveway extension</div>
+          <p class="mini-quote">“They poured it in one day and cleaned up everything.”</p>
+          <div class="who"><span class="avatar">MK</span>Sample review · Driveway</div>
         </div>
         <div class="art a4">
           <div class="cure">
@@ -307,7 +357,7 @@ footer{background:var(--fog);padding-block:56px 40px;color:var(--slate);font-siz
         </div>
       </div>
     </div>
-    <div class="wrap"><div class="strip"><span><b>Free</b> estimates</span><span><b>Credit cards</b> accepted</span><span><b>Bilingual</b> crew</span><span><b>Driveways to walls</b></span></div></div>
+    <div class="wrap"><div class="strip"><span><b>Free</b> estimates</span><span><b>Written</b> quotes</span><span><b>Licensed</b> &amp; insured</span><span><b>Driveways to walls</b></span></div></div>
   </section>
 
   <section class="band">
@@ -362,7 +412,7 @@ footer{background:var(--fog);padding-block:56px 40px;color:var(--slate);font-siz
     <div class="wrap">
       <span class="tag">Services</span>
       <h1 class="h-lg" style="margin:8px 0 16px">Everything from a <em>sidewalk</em> to a stamped patio.</h1>
-      <p class="lede">Residential concrete across Athens, Huntsville, Madison and the rest of Limestone and Madison counties.</p>
+      <p class="lede">Residential concrete for homeowners across your city and the surrounding area.</p>
     </div>
   </section>
   <section class="band" style="padding-top:56px"><div class="wrap"><div class="grid g2" id="allServices"></div></div></section>
@@ -371,8 +421,8 @@ footer{background:var(--fog);padding-block:56px 40px;color:var(--slate);font-siz
       <div><h2 class="h">Questions we get a lot</h2></div>
       <div class="contact-list">
         <div><span>Free estimates?</span><span>Yes, every job</span></div>
-        <div><span>Payment</span><span>Credit card or check (check pricing is lower)</span></div>
-        <div><span>Languages</span><span>English and Spanish</span></div>
+        <div><span>Payment</span><span>Card, check or cash</span></div>
+        <div><span>Warranty</span><span>Workmanship guaranteed</span></div>
         <div><span>Emergency service</span><span>Not offered</span></div>
         <div><span>Typical timeline</span><span>1–3 days on site for most driveways and patios</span></div>
       </div>
@@ -385,8 +435,8 @@ footer{background:var(--fog);padding-block:56px 40px;color:var(--slate);font-siz
   <section>
     <div class="wrap">
       <span class="tag">Our work</span>
-      <h1 class="h-lg" style="margin:8px 0 16px">Recent pours around <em>North Alabama</em>.</h1>
-      <p class="lede">Driveway extensions, patios, walkways and stamped concrete. Prices are what homeowners reported paying.</p>
+      <h1 class="h-lg" style="margin:8px 0 16px">Recent pours around <em>town</em>.</h1>
+      <p class="lede">Driveway extensions, patios, walkways and stamped concrete. Swap these placeholders for real job photos in Admin.</p>
     </div>
   </section>
   <section class="band" style="padding-top:48px">
@@ -404,13 +454,13 @@ footer{background:var(--fog);padding-block:56px 40px;color:var(--slate);font-siz
       <span class="tag">Reviews</span>
       <h1 class="h-lg" style="margin:8px 0 28px">What homeowners <em>say</em>.</h1>
       <div class="summary">
-        <div><div class="num">4.4</div><div class="stars" style="font-size:18px">★★★★★</div><div class="note">14 verified HomeAdvisor reviews</div></div>
+        <div><div class="num">4.8</div><div class="stars" style="font-size:18px">★★★★★</div><div class="note">Sample reviews for this demo. Replace with the client's Google reviews.</div></div>
         <div class="bars" style="max-width:420px">
-          <div class="bar"><span>5</span><i><b style="right:21%"></b></i><span>79%</span></div>
-          <div class="bar"><span>4</span><i><b style="right:100%"></b></i><span>0%</span></div>
-          <div class="bar"><span>3</span><i><b style="right:93%"></b></i><span>7%</span></div>
-          <div class="bar"><span>2</span><i><b style="right:93%"></b></i><span>7%</span></div>
-          <div class="bar"><span>1</span><i><b style="right:93%"></b></i><span>7%</span></div>
+          <div class="bar"><span>5</span><i><b style="right:25%"></b></i><span>75%</span></div>
+          <div class="bar"><span>4</span><i><b style="right:75%"></b></i><span>25%</span></div>
+          <div class="bar"><span>3</span><i><b style="right:100%"></b></i><span>0%</span></div>
+          <div class="bar"><span>2</span><i><b style="right:100%"></b></i><span>0%</span></div>
+          <div class="bar"><span>1</span><i><b style="right:100%"></b></i><span>0%</span></div>
         </div>
       </div>
     </div>
@@ -438,11 +488,11 @@ footer{background:var(--fog);padding-block:56px 40px;color:var(--slate);font-siz
           <div class="two">
             <div class="field"><label for="q-type">Project</label>
               <select class="input" id="q-type"><option>Driveway</option><option>Driveway extension</option><option>Patio</option><option>Sidewalk / walkway</option><option>Stamped concrete</option><option>Repair / resurface</option><option>Poured wall</option><option>Something else</option></select></div>
-            <div class="field"><label for="q-city">City</label><input class="input" id="q-city" placeholder="Athens"></div>
+            <div class="field"><label for="q-city">City</label><input class="input" id="q-city" placeholder="Your city"></div>
           </div>
           <div class="field"><label for="q-size">Approximate size</label><input class="input" id="q-size" placeholder="e.g. 20 × 45 ft"></div>
           <div class="field"><label for="q-notes">Details</label><textarea class="input" id="q-notes" placeholder="Tell us about the area, any existing concrete, trees to remove, timeline…"></textarea></div>
-          <div class="field"><label for="q-lang">Preferred language</label><select class="input" id="q-lang"><option>English</option><option>Español</option></select></div>
+          <div class="field"><label for="q-lang">Best time to call</label><select class="input" id="q-lang"><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div>
           <p class="note" id="qErr" hidden>Add your name and a phone number so we can call you back.</p>
           <button class="btn btn-fill" type="submit" style="justify-self:start">Request estimate</button>
           <div class="ok-msg" id="qOk" hidden></div>
@@ -488,7 +538,7 @@ footer{background:var(--fog);padding-block:56px 40px;color:var(--slate);font-siz
             <div class="form">
               <div class="drop"><label for="ph-file" style="cursor:pointer">Choose project photos to upload</label><input id="ph-file" type="file" accept="image/*" multiple style="display:block;margin:10px auto 0"></div>
               <div class="two">
-                <div class="field"><label for="ph-cap">Caption</label><input class="input" id="ph-cap" placeholder="Driveway extension, Athens"></div>
+                <div class="field"><label for="ph-cap">Caption</label><input class="input" id="ph-cap" placeholder="Driveway extension"></div>
                 <div class="field"><label for="ph-cat">Category</label><select class="input" id="ph-cat"><option>Driveways</option><option>Patios</option><option>Walkways</option><option>Stamped</option><option>Repairs</option></select></div>
               </div>
               <p class="note">Photos are resized before saving. Uploaded photos replace the concrete placeholders in the gallery.</p>
@@ -507,7 +557,7 @@ footer{background:var(--fog);padding-block:56px 40px;color:var(--slate);font-siz
             <form class="form" id="setForm">
               <div class="two">
                 <div class="field"><label for="s-phone">Phone</label><input class="input" id="s-phone" placeholder="(256) 555-0100"></div>
-                <div class="field"><label for="s-email">Email</label><input class="input" id="s-email" placeholder="office@brconcrete.com"></div>
+                <div class="field"><label for="s-email">Email</label><input class="input" id="s-email" placeholder="office@yourcompany.com"></div>
               </div>
               <div class="two">
                 <div class="field"><label for="s-area">Service area</label><input class="input" id="s-area"></div>
@@ -527,10 +577,11 @@ footer{background:var(--fog);padding-block:56px 40px;color:var(--slate);font-siz
 <footer>
   <div class="wrap foot">
     <div style="display:grid;gap:8px;max-width:360px">
-      <a class="logo" href="#home" style="color:var(--ink)"><span class="logo-mark">br</span>BR Concrete Finishing</a>
-      <p>Quality, affordable concrete work. Honesty counts.</p>
+      <a class="logo" href="#home" style="color:var(--ink)"><span class="logo-mark">sc</span>Summit Concrete Co.</a>
+      <p>Driveways, patios and flatwork, poured right the first time.</p>
       <p id="footContact"></p>
       <p style="font-size:13px;color:var(--ash)">Demo by A’Nya</p>
+      <button class="replay" id="introReplay" type="button">Replay intro</button>
     </div>
     <nav aria-label="Footer"><a href="#services">Services</a><a href="#work">Our work</a><a href="#reviews">Reviews</a><a href="#quote">Free estimate</a><a href="#admin">Admin</a></nav>
   </div>
@@ -540,7 +591,7 @@ footer{background:var(--fog);padding-block:56px 40px;color:var(--slate);font-siz
 <script>
 (function(){
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-const store={get(k,d){try{const v=localStorage.getItem('brc_'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('brc_'+k,JSON.stringify(v));return true}catch(e){return false}}};
+const store={get(k,d){try{const v=localStorage.getItem('demo_'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('demo_'+k,JSON.stringify(v));return true}catch(e){return false}}};
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2200)}
 
@@ -553,39 +604,33 @@ const SERVICES=[
  {t:'Poured concrete walls',k:'Walls',d:'Poured walls for retaining, foundations and garden borders.'}
 ];
 const REVIEWS=[
- {n:'Jorge D.',dt:'Aug 2025',r:5,p:'Driveway extension',$:'',x:"Amazing! I expected the project to last minimum 3-4 days but they finished in 2! Great pricing! I was worried at first seeing as they gave me the best deal but they outdid themselves. Love my driveway extension. If I wanted anything different they made sure to ask me to make sure I got everything I wanted. They made me feel secure with answering all concrete questions I had. Very fast and hard workers. They took out some trees as well and they were very good at doing that too. Very responsive with communication!",f:1},
- {n:'Laura T.',dt:'Oct 2024',r:5,p:'Patio',$:'',x:"They did an awesome job. Quality work and craftsmanship. After my last experience with a concrete contractor I couldn't be happier! I'm so happy and excited to get to spend nights around the fire with family and friends! Thank you Bubba and BR Concrete Finishing!",re:'Thank you it was a pleasure working with you!',f:1},
- {n:'Richard A.',dt:'Feb 2026',r:5,p:'Driveway',$:'$4,000',x:"They did a widening of the driveway and showed up on schedule and they got it done and the price was exactly what I expected very good job and would recommend them to anybody. I am very pleased with the results.",f:1},
- {n:'Scott R.',dt:'Dec 2024',r:5,p:'Recommended',$:'',x:"Arnaldo and his crew are honest, hardworking and always on time. He was very helpful to provide professional advice on project questions.",re:'Thank you, was great working for you',f:1},
- {n:'David C.',dt:'Oct 2024',r:5,p:'Driveway & patio',$:'',x:"They did a great job on my driveway and patio... If you need concrete work done at a good price...these are the people to call...I would recommend them to anyone... Great job and fast quality work. Thank guys!",re:'It was great working with yall and thank you for the kindness to the guys! if we can help with anything else just let us know!',f:1},
- {n:'Patricia F.',dt:'May 2026',r:5,p:'Patio, walks & steps',$:'$3,900',x:"Fabulous work! Highly recommend!",f:1},
- {n:'Dave B.',dt:'Dec 2024',r:5,p:'Recommended',$:'',x:"Great work. All requests were handled quickly, efficiently, and professionally. Completely satisfied.",re:'Thank you guys!',f:0},
- {n:'Kathy T.',dt:'Jan 2025',r:5,p:'Recommended',$:'',x:"Great group of men and women. Would definetly hire them again. I gave their name to several people.",f:0},
- {n:'Krystal H.',dt:'Oct 2024',r:5,p:'Repair',$:'',x:"The repair was did extremely well by this company. Such excellent work and highly recommend them.",re:'Thank you!!!',f:0},
- {n:'Tom P.',dt:'Dec 2024',r:5,p:'Recommended',$:'$2,500',x:"Great crew that did a great job. Would use them again",re:'Thank you, it was a pleasure working for you',f:0},
- {n:'James H.',dt:'Feb 2025',r:5,p:'Recommended',$:'',x:"Great Job, Very Professional",f:0},
- {n:'Annette W.',dt:'May 2026',r:3,p:'Patio, walks & steps',$:'$3,000',x:"Friendly correspondence and great price. I'm disappointed in the quality of work. The sidewalk was not squared to the existing patio. I believe the forms were removed too quickly. If you send workers that don't speak any english...send an interpreter.",f:0},
- {n:'Christine C.',dt:'Jan 2026',r:2,p:'Stamped concrete',$:'$8,000',x:"We had them come out and do a very large stamped and colored concrete patio extension. They brought in equipment to remove the soil and broke an irrigation line. We didn't find out until all the work was done. They had to come in and cut a section out to repair the water leak. Now, we can't get them to come out and repair it.",f:0},
- {n:'Ricky A.',dt:'Oct 2025',r:1,p:'Driveway',$:'$1,000',x:"Would give 5 stars on work performed. 0 stars on professionalism and communication. While work was being performed, I was given a price to extend the driveway another 45 ft. We agreed and was told they would be back the next morning but never showed up.",re:'The customer was quoted a lower price for check payment and a same-day total; the job was finished on a later day at a new quote, which the customer agreed to and paid.',f:0}
+ {n:'Sample review · M. K.',dt:'Recent',r:5,p:'Driveway',$:'',x:"They poured our new driveway in one day and cleaned up everything when they left. The price matched the written quote exactly.",re:'Thank you, it was a pleasure working with you!',f:1},
+ {n:'Sample review · L. T.',dt:'Recent',r:5,p:'Patio',$:'',x:"Our back patio came out level and square to the house. The crew explained the cure time and when we could put furniture on it.",f:1},
+ {n:'Sample review · R. A.',dt:'Recent',r:5,p:'Driveway extension',$:'',x:"Showed up on schedule, widened the driveway for a second car, and kept us updated the whole time. Would hire again.",f:1},
+ {n:'Sample review · S. R.',dt:'Recent',r:5,p:'Recommended',$:'',x:"Honest, hardworking crew that answered every question we had about the project before they started.",re:'Thank you, we appreciate you!',f:1},
+ {n:'Sample review · D. C.',dt:'Recent',r:4,p:'Stamped concrete',$:'',x:"The stamped patio looks like real slate. Took a day longer than planned because of rain, but they communicated the whole way.",f:1},
+ {n:'Sample review · P. F.',dt:'Recent',r:5,p:'Walkway & steps',$:'',x:"Fast, clean, professional work on our front walk and steps. Highly recommend.",f:1},
+ {n:'Sample review · K. H.',dt:'Recent',r:5,p:'Repair',$:'',x:"They cut out a sunken section of our sidewalk and replaced it. You can't tell where the new concrete starts.",f:0},
+ {n:'Sample review · T. P.',dt:'Recent',r:4,p:'Driveway',$:'',x:"Good crew and fair price. Would use them again for our patio next year.",f:0}
 ];
 const WORK=[
- {c:'Driveway extension',k:'Driveways',m:'Athens · 2 days'},
- {c:'Back patio & fire-pit pad',k:'Patios',m:'Patio'},
- {c:'Driveway widening',k:'Driveways',m:'$4,000'},
- {c:'Stamped & colored patio',k:'Stamped',m:'$8,000'},
- {c:'Front walk & steps',k:'Walkways',m:'$3,900'},
+ {c:'Driveway extension',k:'Driveways',m:'2 days'},
+ {c:'Back patio & fire-pit pad',k:'Patios',m:'Broom finish'},
+ {c:'Driveway widening',k:'Driveways',m:'4,000 psi'},
+ {c:'Stamped & colored patio',k:'Stamped',m:'Slate pattern'},
+ {c:'Front walk & steps',k:'Walkways',m:'Non-slip finish'},
  {c:'Slab repair',k:'Repairs',m:'Repair'},
  {c:'Driveway & patio',k:'Driveways',m:'Driveway + patio'},
- {c:'Side walkway',k:'Walkways',m:'$3,000'}
+ {c:'Side walkway',k:'Walkways',m:'4 × 30 ft'}
 ];
 
 let featured=store.get('featured',null); if(!featured){featured=REVIEWS.map(r=>!!r.f)}
-let settings=Object.assign({phone:'',email:'',area:'Athens, Huntsville, Madison & North Alabama',hours:'Mon–Sat, 7am–6pm',pin:'1234'},store.get('settings',{}));
+let settings=Object.assign({phone:'',email:'',area:'Your city & surrounding areas',hours:'Mon–Sat, 7am–6pm',pin:'1234'},store.get('settings',{}));
 let photos=store.get('photos',[]);
 const sampleLeads=[
- {id:'s1',t:'Nov 3, 2026',n:'Example: Marcus L.',ph:'(256) 555-0118',type:'Driveway extension',city:'Athens',size:'18 × 40 ft',notes:'Want to widen for a second car. Two small trees on the side.',st:'New',ex:1},
- {id:'s2',t:'Nov 1, 2026',n:'Example: Denise P.',ph:'(256) 555-0177',type:'Stamped concrete',city:'Madison',size:'16 × 20 ft',notes:'Slate pattern, gray tone, around an existing patio.',st:'Estimate scheduled',ex:1},
- {id:'s3',t:'Oct 28, 2026',n:'Example: Tony R.',ph:'(256) 555-0103',type:'Sidewalk / walkway',city:'Huntsville',size:'4 × 30 ft',notes:'Replace cracked front walk.',st:'Won',ex:1}
+ {id:'s1',t:'Nov 3, 2026',n:'Example: Marcus L.',ph:'(256) 555-0118',type:'Driveway extension',city:'Northside',size:'18 × 40 ft',notes:'Want to widen for a second car. Two small trees on the side.',st:'New',ex:1},
+ {id:'s2',t:'Nov 1, 2026',n:'Example: Denise P.',ph:'(256) 555-0177',type:'Stamped concrete',city:'Eastside',size:'16 × 20 ft',notes:'Slate pattern, gray tone, around an existing patio.',st:'Estimate scheduled',ex:1},
+ {id:'s3',t:'Oct 28, 2026',n:'Example: Tony R.',ph:'(256) 555-0103',type:'Sidewalk / walkway',city:'Downtown',size:'4 × 30 ft',notes:'Replace cracked front walk.',st:'Won',ex:1}
 ];
 let leads=store.get('leads',null)||sampleLeads;
 
@@ -615,7 +660,7 @@ function photoFig(item,i){
 
 /* render */
 function stars(n){return '★'.repeat(n)+'<span style="opacity:.25">'+'★'.repeat(5-n)+'</span>'}
-function revCard(r){return `<article class="rev"><div class="meta"><span><b style="color:var(--ink);font-weight:500">${esc(r.n)}</b> · ${esc(r.dt)}</span><span class="stars">${stars(r.r)}</span></div><p>${esc(r.x)}</p><div class="meta" style="margin:12px 0 0"><span>${esc(r.p)}</span>${r.$?`<span class="num">${esc(r.$)}</span>`:''}</div>${r.re?`<div class="reply"><b>Response from BR Concrete</b>${esc(r.re)}</div>`:''}</article>`}
+function revCard(r){return `<article class="rev"><div class="meta"><span><b style="color:var(--ink);font-weight:500">${esc(r.n)}</b> · ${esc(r.dt)}</span><span class="stars">${stars(r.r)}</span></div><p>${esc(r.x)}</p><div class="meta" style="margin:12px 0 0"><span>${esc(r.p)}</span>${r.$?`<span class="num">${esc(r.$)}</span>`:''}</div>${r.re?`<div class="reply"><b>Response from the owner</b>${esc(r.re)}</div>`:''}</article>`}
 function renderServices(){
   $('#homeServices').innerHTML=SERVICES.slice(0,3).map(s=>`<div class="card reveal"><span class="tag">${s.k}</span><h3>${s.t}</h3><p>${s.d}</p><a class="arrow-link" href="#quote">Get a price →</a></div>`).join('');
   $('#allServices').innerHTML=SERVICES.map(s=>`<div class="card"><span class="tag">${s.k}</span><h3>${s.t}</h3><p>${s.d}</p><a class="arrow-link" href="#quote">Request an estimate →</a></div>`).join('');
@@ -639,7 +684,7 @@ function renderGallery(){
 }
 function renderContact(){
   const ph=settings.phone||'Add a phone number in Admin',em=settings.email||'Add an email in Admin';
-  $('#contactList').innerHTML=`<div><span>Phone</span><span>${esc(ph)}</span></div><div><span>Email</span><span>${esc(em)}</span></div><div><span>Service area</span><span>${esc(settings.area)}</span></div><div><span>Hours</span><span>${esc(settings.hours)}</span></div><div><span>Languages</span><span>English · Español</span></div>`;
+  $('#contactList').innerHTML=`<div><span>Phone</span><span>${esc(ph)}</span></div><div><span>Email</span><span>${esc(em)}</span></div><div><span>Service area</span><span>${esc(settings.area)}</span></div><div><span>Hours</span><span>${esc(settings.hours)}</span></div>`;
   $('#footContact').textContent=[settings.phone,settings.area].filter(Boolean).join(' · ');
 }
 
@@ -682,16 +727,16 @@ $('#quoteForm').addEventListener('submit',e=>{
 });
 
 /* admin */
-let authed=false;try{authed=sessionStorage.getItem('brc_auth')==='1'}catch(e){}
-$('#pinForm').addEventListener('submit',e=>{e.preventDefault();if($('#pin').value===settings.pin){authed=true;try{sessionStorage.setItem('brc_auth','1')}catch(e){}$('#pin').value='';$('#pinErr').hidden=true;renderAdmin()}else{$('#pinErr').hidden=false}});
-$('#signOut').addEventListener('click',()=>{authed=false;try{sessionStorage.removeItem('brc_auth')}catch(e){}renderAdmin()});
+let authed=false;try{authed=sessionStorage.getItem('demo_auth')==='1'}catch(e){}
+$('#pinForm').addEventListener('submit',e=>{e.preventDefault();if($('#pin').value===settings.pin){authed=true;try{sessionStorage.setItem('demo_auth','1')}catch(e){}$('#pin').value='';$('#pinErr').hidden=true;renderAdmin()}else{$('#pinErr').hidden=false}});
+$('#signOut').addEventListener('click',()=>{authed=false;try{sessionStorage.removeItem('demo_auth')}catch(e){}renderAdmin()});
 $$('[data-tab]').forEach(b=>b.addEventListener('click',()=>{$$('[data-tab]').forEach(x=>x.setAttribute('aria-pressed',x===b));$$('[data-pane]').forEach(p=>p.hidden=p.dataset.pane!==b.dataset.tab)}));
 const STAT=['New','Called','Estimate scheduled','Won','Lost'];
 function renderAdmin(){
   $('#adminLock').hidden=authed;$('#adminApp').hidden=!authed;if(!authed)return;
   const open=leads.filter(l=>l.st==='New').length,won=leads.filter(l=>l.st==='Won').length;
   $('#kpis').innerHTML=[['Estimate requests',leads.length],['Waiting on a call',open],['Jobs won',won],['Rating','4.4 ★']].map(([k,v])=>`<div class="kpi"><div class="art-k">${k}</div><div class="art-big">${v}</div></div>`).join('');
-  $('#leadRows').innerHTML=leads.map(l=>`<tr><td class="num">${esc(l.t)}</td><td><b style="font-weight:500">${esc(l.n)}</b><br><span class="note">${esc(l.ph)}${l.em?' · '+esc(l.em):''}</span></td><td>${esc(l.type)}<br><span class="note">${esc(l.city)} ${l.size?'· '+esc(l.size):''}</span></td><td style="max-width:280px">${esc(l.notes)}${l.lang==='Español'?'<br><span class="chip">Español</span>':''}</td><td><select class="status" data-lead="${l.id}" aria-label="Status for ${esc(l.n)}">${STAT.map(s=>`<option ${s===l.st?'selected':''}>${s}</option>`).join('')}</select></td><td><button class="btn btn-ghost btn-sm" data-del="${l.id}">Remove</button></td></tr>`).join('')||'<tr><td colspan="6" class="note">No requests yet.</td></tr>';
+  $('#leadRows').innerHTML=leads.map(l=>`<tr><td class="num">${esc(l.t)}</td><td><b style="font-weight:500">${esc(l.n)}</b><br><span class="note">${esc(l.ph)}${l.em?' · '+esc(l.em):''}</span></td><td>${esc(l.type)}<br><span class="note">${esc(l.city)} ${l.size?'· '+esc(l.size):''}</span></td><td style="max-width:280px">${esc(l.notes)}${l.lang?'<br><span class="chip">Call: '+esc(l.lang)+'</span>':''}</td><td><select class="status" data-lead="${l.id}" aria-label="Status for ${esc(l.n)}">${STAT.map(s=>`<option ${s===l.st?'selected':''}>${s}</option>`).join('')}</select></td><td><button class="btn btn-ghost btn-sm" data-del="${l.id}">Remove</button></td></tr>`).join('')||'<tr><td colspan="6" class="note">No requests yet.</td></tr>';
   $('#revAdmin').innerHTML=REVIEWS.map((r,i)=>`<div class="rev-admin"><label class="switch"><input type="checkbox" data-rev="${i}" ${featured[i]?'checked':''} aria-label="Feature review by ${esc(r.n)}"><span></span></label><div style="min-width:0"><b style="font-weight:500">${esc(r.n)}</b> <span class="stars">${stars(r.r)}</span> <span class="note">· ${esc(r.dt)} · ${esc(r.p)}</span><p>${esc(r.x.slice(0,150))}${r.x.length>150?'…':''}</p></div></div>`).join('');
   $('#thumbs').innerHTML='';photos.forEach((p,i)=>{const d=document.createElement('div');d.className='thumb';d.appendChild(photoFig({c:p.c,src:p.src},i));const b=document.createElement('button');b.className='btn btn-fill btn-sm';b.textContent='Delete';b.dataset.ph=i;d.appendChild(b);$('#thumbs').appendChild(d)});
   if(!photos.length)$('#thumbs').innerHTML='<p class="note">No photos uploaded yet. The gallery is showing concrete placeholders.</p>';
@@ -713,6 +758,36 @@ $('#ph-file').addEventListener('change',async e=>{
 $('#setForm').addEventListener('submit',e=>{e.preventDefault();settings={phone:$('#s-phone').value.trim(),email:$('#s-email').value.trim(),area:$('#s-area').value.trim(),hours:$('#s-hours').value.trim(),pin:$('#s-pin').value.trim()||'1234'};store.set('settings',settings);renderContact();toast('Business info saved')});
 
 renderServices();renderReviews();renderGallery();renderContact();route();
+})();
+</script>
+<script>
+/* Opening intro: plays intro.mp4 if present, otherwise the built-in blueprint-and-pour animation */
+(function(){
+  const el=document.getElementById('intro'),v=document.getElementById('introVideo'),bar=document.getElementById('introBar');
+  if(!el)return;
+  let timer,done=false,fell=false;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function lock(on){document.documentElement.style.overflow=on?'hidden':''}
+  function close(){if(done)return;done=true;clearTimeout(timer);try{v.pause()}catch(e){}el.classList.add('out');lock(false);setTimeout(()=>{el.hidden=true},900)}
+  function runBar(ms){bar.style.transition='none';bar.style.width='0';requestAnimationFrame(()=>requestAnimationFrame(()=>{bar.style.transition='width '+ms+'ms linear';bar.style.width='100%'}))}
+  function restartAnims(){el.querySelectorAll('.ln,.slab,.dim,.name,.sub,.bp').forEach(n=>{n.style.animation='none';n.offsetWidth;n.style.animation=''})}
+  function fallback(){if(fell)return;fell=true;clearTimeout(timer);el.classList.remove('has-video');restartAnims();runBar(4600);timer=setTimeout(close,4600)}
+  function play(){
+    if(reduce){el.hidden=true;return}
+    done=false;el.hidden=false;el.classList.remove('out');lock(true);
+    let started=false;fell=false;
+    v.currentTime=0;
+    const p=v.play();
+    if(p&&p.then){p.then(()=>{if(fell){v.pause();return}started=true;el.classList.add('has-video');restartAnims();const ms=Math.min((v.duration||6)*1000,8000);runBar(ms);clearTimeout(timer);timer=setTimeout(close,ms)}).catch(()=>{if(!started)fallback()})}
+    else fallback();
+    timer=setTimeout(()=>{if(!started)fallback()},900);
+  }
+  v.addEventListener('error',()=>{if(!done)fallback()},true);
+  v.addEventListener('ended',close);
+  document.getElementById('introSkip').addEventListener('click',close);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!el.hidden)close()});
+  document.getElementById('introReplay').addEventListener('click',()=>{scrollTo(0,0);play()});
+  if(location.hash==='#admin'){el.hidden=true}else{play()}
 })();
 </script>
 </body>
